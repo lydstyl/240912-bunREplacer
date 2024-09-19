@@ -1,104 +1,58 @@
+import { steps } from './regexAndSteps'
+
 let text = `
-https://2023-923ce00f-e7c6-499a-96bf-ff03fbab8e82-gi.s3.toutemonannee.com/n1/42d25347-40b6-4510-8f06-b1037b39aaf8/hd/f06106d1-3942-46bc-a9b0-3f0723a95232.jpg?lastmod=1721985322
-chunk-FYWFTXCL.js:5 https://2023-923ce00f-e7c6-499a-96bf-ff03fbab8e82-gi.s3.toutemonannee.com/n1/42d25347-40b6-4510-8f06-b1037b39aaf8/hd/2e7c34b7-a274-41a0-a5bf-e97a760c93db.jpg?lastmod=1709890602
-chunk-FYWFTXCL.js:5 https://2023-923ce00f-e7c6-499a-96bf-ff03fbab8e82-gi.s3.toutemonannee.com/n1/42d25347-40b6-4510-8f06-b1037b39aaf8/hd/5338cb64-4010-43cc-9a7b-e96275d686d0.jpg?lastmod=1715099651
-chunk-FYWFTXCL.js:5 https://2023-923ce00f-e7c6-499a-96bf-ff03fbab8e82-gi.s3.toutemonannee.com/n1/42d25347-40b6-4510-8f06-b1037b39aaf8/hd/69ede387-2d0c-4515-9911-ae7bde2cee7e.jpg?lastmod=1715099654
-undefined
-document.querySelectorAll('img.lg-image').forEach(img => console.log(img.src))
+1- Base STEF_OPTIM – connexion avec l’utilisateur STEF
+
+2- Tout charger -> Appliquer 
+
+3- Aller dans le menu Données → écran Produits
+
+4- Choisir la configuration TestProduit
+
+5- Pour la première ligne se placer sur le Produit KF610400
+
+6- Faire clic sur le bouton Détails
+
+7- Choisir l’onglet Politiques de stock
+
+8- Pour la première ligne groupe Maxi colonne Type faire double clic et dans la liste déroulante choisir → Quantité
+
+9- Pour la première ligne groupe Maxi colonne Valeur saisir 150 et faire entrée
+
+10- Faire clic sur l’icône de sauvegarde
+
+11- Faire clic sur le nom de l’utilisateur STEF et choisir l’option Rechanger les données
+
+12- Revenir au menu Données → écran Produits
+
+13- Pour la première ligne se placer sur le Produit KF610400
+
+14- Faire clic sur le bouton Détails
+
+15- Choisir l’onglet Politiques de stock
+
+16- Vérifier que les lignes modifiées sont bien à jour
+
+Pour la première ligne groupe Maxi colonne Type on doit retrouver la valeur → Quantité
+
+Pour la première ligne groupe Maxi colonne Valeur on doit retrouver la valeur → 150
+
+17- Aller dans le menu Données choisir l’écran Données d’approvisionnement
+
+18- Choisir l’onglet Test-Tonnage
+
+19- Choisir l’onglet Politiques de stock
+
+20- Choisir l’onglet TestProduits
+
+21- Vérifier que on a bien les valeurs à jour :
+
+Pour la première ligne groupe Maxi colonne Type on doit retrouver la valeur → Quantité
+
+Pour la première ligne groupe Maxi colonne Valeur on doit retrouver la valeur → 150
 `
 
-const re = {
-  lineBreak: /(\r\n|\n|\r)/g,
-  lineBreak2: /(\r\n|\n|\r){2}/g
-}
-
-const steps = {
-  azDiscriptionSteps: [
-    {
-      regex: /(.*)$/gm,
-      replacer: '// $1'
-    },
-    {
-      regex: /\/{2}\s$/gm,
-      replacer: '\n'
-    },
-    {
-      regex: /(\r\n|\n|\r){2}/g,
-      replacer: '\n'
-    },
-    {
-      regex: /(\r\n|\n|\r){2}/g,
-      replacer: '\n'
-    }
-  ],
-  createArray: [
-    {
-      regex: re.lineBreak2, // replace 2 line breaks with one
-      replacer: '\n'
-    },
-    {
-      regex: /^\s/gm, // remove first space
-      replacer: ''
-    },
-    {
-      // regex: /^((\w|-)+)/gm,
-      regex: /^(.+)/gm, // wrap work with quotes
-      replacer: '"$1"'
-    },
-    {
-      regex: re.lineBreak, // replace line breaks with comma
-      replacer: ','
-    },
-    {
-      regex: /^,/g, // replace first comma with [
-      replacer: '['
-    },
-    {
-      regex: /,$/g, // replace last comma with ]
-      replacer: ']'
-    },
-    {
-      regex: /^"/g, // replace first quote with [ only if first character is a quote
-      replacer: '["'
-    }
-  ],
-  createArrayTouteMonAnnee: [
-    {
-      regex: /^\s/gm, // remove first space
-      replacer: ''
-    },
-    {
-      regex: /^.*(http.+)/gm, // wrap work with quotes
-      replacer: '"$1"'
-    },
-    {
-      regex: /^[^"http].*/gm, // remove not starting with "http"
-      replacer: ''
-    },
-    {
-      regex: re.lineBreak2, // replace 2 line breaks with one
-      replacer: '\n'
-    },
-    {
-      regex: re.lineBreak2, // replace 2 line breaks with one
-      replacer: '\n'
-    },
-    {
-      regex: re.lineBreak, // replace line breaks with comma
-      replacer: ','
-    },
-    {
-      regex: /,$/g, // replace last comma with ]
-      replacer: ']'
-    },
-    {
-      regex: /^"/g, // replace first quote with [ only if first character is a quote
-      replacer: '["'
-    }
-  ]
-}
-
-steps.createArrayTouteMonAnnee.forEach((step) => {
+steps.azDiscriptionSteps.forEach((step) => {
   text = text.replace(step.regex, step.replacer)
 })
 console.log(text)
