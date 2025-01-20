@@ -4,6 +4,16 @@ const re = {
 }
 
 export const steps = {
+  azCypExtractor: [
+    {
+      regex: /.*CYP-(\d{1,3})-.*/gm,
+      replacer: '$1'
+    },
+    {
+      regex: re.lineBreak, // replace line breaks with space
+      replacer: ' '
+    }
+  ],
   azDiscriptionSteps: [
     {
       regex: /(.*)$/gm,
