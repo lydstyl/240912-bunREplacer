@@ -1,167 +1,48 @@
-import { getCYPs, steps } from './regexAndSteps'
+import { getAzDescription, getCYPs } from './regexAndSteps'
 
 let text = `
+CYP-533
 
-CYP-313
-[Stock alerts] - Delete a Computed column
 
-Aziz Amnay
+[OrderPoint] - Ventes option correction manuelle
 
-Yurima Colmenares
+Ajouter
+Description
 
-Majeur
+Ecran - Calcul des seuils – Graphique ventes correction manuelle
 
-Unfunctional
-Non résolue
-20 déc. 2023
-31 mars 2025
+Base STEF_2 – connexion avec l’utilisateur STEF
 
-Aucun
-1|i022o3:
+Tout charger -> Appliquer 
 
-Tâche
-CYP-389
-[Optimisation] - commande imposée #meeting
+Aller dans l’écran Calcul des seuils
 
-Gabriel Brun
+Choisir la configuration TestCalcul,
 
-Fernando Maciel
+Choisir l’onglet Calcul
 
-Majeur
+Faire clic sur Paramètres avancés
 
-Unfunctional
-Non résolue
-9 août 2024
-15 avr. 2025
+Cocher l’option Correction manuelle
 
-Aucun
-1|i02j43:
+Sur la grille se positionner sur le produit KF622262
 
-Tâche
-CYP-390
-[Optimisations] - imposition/ Libérer simple #meeting
+Faire clic sur le bouton Détails
 
-Gabriel B.
+10.   Dans le graphique se positionner sur la première courbe et vérifier les valeurs affichées :
 
-Fernando Maciel
+a.      30/06/2014
 
-Majeur
+b.     Contexte retenu: 55
 
-Unfunctional
-Non résolue
-9 août 2024
-15 avr. 2025
+11.   Dans le graphique se positionner sur la troisième courbe et vérifier les valeurs affichées :
 
-Aucun
-1|i02j4b:
+a.      02/07/2014
 
-Tâche
-CYP-94
-[OrderPoint] Pouvoir naviguer rapidement entre les écrans sans erreurs
-
-Karel Tytgat
-
-Yann NOUEL DE KERANGUE
-
-Mineur
-
-Unfunctional
-Non résolue
-3 déc. 2021
-3 avr. 2025
-
-Aucun
-1|i00wpx:9
-
-Tâche
-CYP-409
-[Stock alerts] - Computed columns - IF
-
-Yurima Colmenares
-
-Yurima Colmenares
-
-Trivial
-
-Unfunctional
-Non résolue
-9 sept. 2024
-3 avr. 2025
-
-Aucun
-1|i02klv:
-
-Tâche
-CYP-494
-[Dashboard] - Hyperlink (screens)
-
-Yurima Colmenares
-
-Yurima Colmenares
-
-Trivial
-
-Unfunctional
-Non résolue
-5 déc. 2024
-6 mars 2025
-
-Aucun
-1|i02qlv:
-
-Tâche
-CYP-502
-[Dashboard] - Hyperlink tab (2)
-
-Yurima Colmenares
-
-Yurima Colmenares
-
-Trivial
-
-Unfunctional
-Non résolue
-31 déc. 2024
-6 mars 2025
-
-Aucun
-1|i02rkr:
-
-Tâche
-CYP-516
-[Optimisation] - Enchainement d'optimisations depuis l'écran dédié
-
-Gabriel Brun
-
-Fernando Maciel
-
-Trivial
-
-Unfunctional
-Non résolue
-4 févr. 2025
-13 mars 2025
-
-Aucun
-1|i02tib:
-
+b.     Contexte retenu: 68
 `
 
-// new Text(text)
-//   .process(findCYPWords)
-//   .replace([
-//     {
-//       regex: /CYP-/g,
-//       replacer: ''
-//     }
-//   ])
-//   .log()
+// getCYPs(text)
 
-getCYPs(text)
-
-// steps.azCypExtractor.forEach((step) => {
-//   text = text.replace(step.regex, step.replacer)
-// })
-// console.log(text)
-
+getAzDescription(text)
 // bun index.ts
